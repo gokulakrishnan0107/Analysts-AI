@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — AnalystAI</title>
+  <meta name="description" content="Get in touch with the AnalystAI team. Send us your questions, feedback, or suggestions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><i class="fas fa-brain"></i> AnalystAI</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="dashboard.html" class="nav-cta"><i class="fas fa-rocket"></i> Launch Dashboard</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" style="padding:5rem 0 4rem">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container hero-content">
+      <div class="hero-badge"><i class="fas fa-envelope"></i> Get In Touch</div>
+      <h1>Contact <span>Us</span></h1>
+      <p class="hero-subtitle">Have questions, feedback, or ideas? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;flex-wrap:wrap">
+        <!-- Form -->
+        <div class="fade-up">
+          <div class="section-header" style="text-align:left;margin-bottom:2rem">
+            <span class="section-label">Send a Message</span>
+            <h2>Drop Us a Line</h2>
+            <p>Fill out the form and we'll get back to you soon.</p>
+          </div>
+          <form class="contact-form-wrapper" action="https://formspree.io/f/xgejkdwl" method="POST" id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Your Name</label>
+              <input type="text" id="contactName" name="name" class="form-input" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email Address</label>
+              <input type="email" id="contactEmail" name="email" class="form-input" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <input type="text" id="contactSubject" name="subject" class="form-input" placeholder="Question about AnalystAI">
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" class="form-input" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submitBtn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <p id="formStatus" style="margin-top:1rem;font-size:0.9rem;display:none"></p>
+          </form>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="fade-up" style="display:flex;flex-direction:column;gap:1.5rem;padding-top:4.5rem">
+          <div class="glass-card" style="padding:1.5rem;display:flex;gap:1rem;align-items:flex-start">
+            <div class="feature-icon" style="flex-shrink:0;margin-bottom:0"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4 style="margin-bottom:0.3rem">Email</h4>
+              <p style="color:var(--text-muted);font-size:0.9rem">support@analystai.app</p>
+            </div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;display:flex;gap:1rem;align-items:flex-start">
+            <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(59,130,246,0.2));color:var(--success)"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4 style="margin-bottom:0.3rem">Response Time</h4>
+              <p style="color:var(--text-muted);font-size:0.9rem">We typically respond within 24 hours</p>
+            </div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;display:flex;gap:1rem;align-items:flex-start">
+            <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(239,68,68,0.2));color:var(--accent-purple)"><i class="fas fa-globe"></i></div>
+            <div>
+              <h4 style="margin-bottom:0.3rem">Social</h4>
+              <div style="display:flex;gap:1rem;margin-top:0.5rem">
+                <a href="https://github.com" target="_blank" style="color:var(--text-muted);font-size:1.2rem;transition:color 0.3s"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com" target="_blank" style="color:var(--text-muted);font-size:1.2rem;transition:color 0.3s"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank" style="color:var(--text-muted);font-size:1.2rem;transition:color 0.3s"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card" style="padding:1.5rem;display:flex;gap:1rem;align-items:flex-start">
+            <div class="feature-icon" style="flex-shrink:0;margin-bottom:0;background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(239,68,68,0.2));color:var(--warning)"><i class="fas fa-question-circle"></i></div>
+            <div>
+              <h4 style="margin-bottom:0.3rem">FAQ</h4>
+              <p style="color:var(--text-muted);font-size:0.9rem">Is it really free? <strong style="color:var(--success)">Yes, 100% free.</strong><br>
+              Do I need an API key? <strong style="color:var(--text-primary)">Optional.</strong> The fallback engine works without it.<br>
+              Is my data safe? <strong style="color:var(--success)">Yes.</strong> Everything stays in your browser.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4><i class="fas fa-brain" style="color:var(--accent)"></i> AnalystAI</h4>
+          <p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">AI-powered analysis. 100% free, 100% browser-based.</p>
+        </div>
+        <div class="footer-col"><h4>Platform</h4><ul><li><a href="dashboard.html">Dashboard</a></li><li><a href="how-it-works.html">How It Works</a></li><li><a href="about.html">About</a></li></ul></div>
+        <div class="footer-col"><h4>Connect</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="https://github.com" target="_blank">GitHub</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 AnalystAI. Free and open for everyone.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Contact form handling
+    const form = document.getElementById('contactForm');
+    const statusEl = document.getElementById('formStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          statusEl.style.display = 'block';
+          statusEl.style.color = '#10B981';
+          statusEl.textContent = '✅ Message sent successfully! We\'ll get back to you soon.';
+          form.reset();
+          showToast('Message sent successfully!', 'success');
+        } else {
+          throw new Error('Send failed');
+        }
+      } catch (err) {
+        statusEl.style.display = 'block';
+        statusEl.style.color = '#EF4444';
+        statusEl.textContent = '❌ Failed to send. Please try again or email us directly.';
+        showToast('Failed to send message', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+      }
+    });
+  </script>
+</body>
+</html>

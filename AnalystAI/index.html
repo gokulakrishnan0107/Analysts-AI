@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnalystAI — 15 Years of Analyst Expertise. Delivered in 10 Minutes.</title>
+  <meta name="description" content="AnalystAI is a free AI-powered automation platform that replicates professional Data Analyst and Business Analyst work. Upload datasets, ask questions, get expert insights instantly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ══ Navigation ══ -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><i class="fas fa-brain"></i> AnalystAI</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html" class="nav-cta"><i class="fas fa-rocket"></i> Launch Dashboard</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- ══ Hero Section ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container hero-content">
+      <div class="hero-badge animate__animated animate__fadeInDown">
+        <i class="fas fa-bolt"></i> AI-Powered Analysis Platform
+      </div>
+      <h1 class="animate__animated animate__fadeInUp">
+        15 Years of Analyst Expertise.<br><span>Delivered in 10 Minutes.</span>
+      </h1>
+      <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+        Upload your dataset, ask questions in plain English, and receive expert-quality analysis, insights, and visualizations — all inside your browser.
+      </p>
+      <a href="dashboard.html" class="hero-cta animate__animated animate__fadeInUp animate__delay-1s">
+        <i class="fas fa-play-circle"></i> Start Analyzing Free
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ Features ══ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label">Features</span>
+        <h2>Everything You Need, Built Right In</h2>
+        <p>Professional-grade analysis capabilities powered by AI, running entirely in your browser.</p>
+      </div>
+      <div class="features-grid">
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
+          <h3>Descriptive Analysis</h3>
+          <p>Automatic summary statistics, distributions, and trend detection across your entire dataset.</p>
+        </div>
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon" style="background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(245,158,11,0.2));color:var(--danger)"><i class="fas fa-search-plus"></i></div>
+          <h3>Diagnostic Analysis</h3>
+          <p>Correlation discovery, outlier detection, and root cause analysis to explain why things happened.</p>
+        </div>
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon" style="background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(59,130,246,0.2));color:var(--accent-purple)"><i class="fas fa-crystal-ball"></i></div>
+          <h3>Predictive Analysis</h3>
+          <p>Linear regression and time-series forecasting to project future trends and values.</p>
+        </div>
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(59,130,246,0.2));color:var(--success)"><i class="fas fa-lightbulb"></i></div>
+          <h3>Prescriptive Analysis</h3>
+          <p>Ranked recommendations with priority levels, expected outcomes, and estimated timelines.</p>
+        </div>
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon" style="background:linear-gradient(135deg,rgba(245,158,11,0.2),rgba(239,68,68,0.2));color:var(--warning)"><i class="fas fa-robot"></i></div>
+          <h3>AI-Powered Queries</h3>
+          <p>Ask questions in natural language. Works with Claude API or our built-in intelligence engine.</p>
+        </div>
+        <div class="glass-card feature-card fade-up">
+          <div class="feature-icon" style="background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(139,92,246,0.2));color:var(--success)"><i class="fas fa-user-tie"></i></div>
+          <h3>Dual Expert Modes</h3>
+          <p>Switch between Data Analyst and Business Analyst modes for specialized insights and frameworks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ How It Works ══ -->
+  <section class="section" style="background:var(--bg-secondary)" id="howItWorks">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label">Simple 3-Step Process</span>
+        <h2>How It Works</h2>
+        <p>From raw data to actionable insights in under 10 minutes.</p>
+      </div>
+      <div class="steps-container">
+        <div class="glass-card step-card fade-up">
+          <div class="step-number">1</div>
+          <h3>Upload Your Data</h3>
+          <p>Drag & drop your CSV, Excel, or JSON file. We auto-detect columns, types, and quality issues.</p>
+          <span class="step-connector"></span>
+        </div>
+        <div class="glass-card step-card fade-up">
+          <div class="step-number">2</div>
+          <h3>Choose Your Analysis</h3>
+          <p>Select Data Analyst or Business Analyst mode. Pick analysis types and ask questions.</p>
+          <span class="step-connector"></span>
+        </div>
+        <div class="glass-card step-card fade-up">
+          <div class="step-number">3</div>
+          <h3>Get Expert Insights</h3>
+          <p>Receive interactive charts, KPI dashboards, AI narratives, and actionable recommendations instantly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Stats Bar ══ -->
+  <section class="stats-bar" id="statsBar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <h3 id="statTime">10 Min</h3>
+          <p>Average Analysis Time</p>
+        </div>
+        <div class="stat-item fade-up">
+          <h3>4 Types</h3>
+          <p>Analysis Engines</p>
+        </div>
+        <div class="stat-item fade-up">
+          <h3>2 Modes</h3>
+          <p>Expert Personas</p>
+        </div>
+        <div class="stat-item fade-up">
+          <h3>100%</h3>
+          <p>Free Forever</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Use Cases ══ -->
+  <section class="section" id="useCases">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label">Use Cases</span>
+        <h2>Built for Every Scenario</h2>
+        <p>Whether you're a startup founder or enterprise analyst, AnalystAI adapts to your workflow.</p>
+      </div>
+      <div class="usecases-grid">
+        <div class="glass-card usecase-card fade-up">
+          <span class="tag da">Data Analyst</span>
+          <h3>Sales Performance Review</h3>
+          <p>Upload monthly sales data to see trends, outliers, and forecasts. Identify top performers and lagging regions instantly.</p>
+        </div>
+        <div class="glass-card usecase-card fade-up">
+          <span class="tag ba">Business Analyst</span>
+          <h3>Market Entry Analysis</h3>
+          <p>Generate SWOT analyses, risk matrices, and stakeholder impact maps for strategic business decisions.</p>
+        </div>
+        <div class="glass-card usecase-card fade-up">
+          <span class="tag da">Data Analyst</span>
+          <h3>Survey Data Exploration</h3>
+          <p>Analyze survey responses with distribution charts, correlation heatmaps, and sentiment insights.</p>
+        </div>
+        <div class="glass-card usecase-card fade-up">
+          <span class="tag ba">Business Analyst</span>
+          <h3>Process Optimization</h3>
+          <p>Map business processes, identify gaps, and receive AI-generated cost-benefit analyses for improvements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA Section ══ -->
+  <section class="section" style="background:var(--bg-secondary);text-align:center">
+    <div class="container fade-up">
+      <h2 style="margin-bottom:1rem">Ready to Transform Your Data?</h2>
+      <p style="color:var(--text-muted);max-width:500px;margin:0 auto 2rem;font-size:1.05rem">No sign-up required. No cost. Just upload and analyze.</p>
+      <a href="dashboard.html" class="hero-cta"><i class="fas fa-rocket"></i> Launch Dashboard Now</a>
+    </div>
+  </section>
+
+  <!-- ══ Footer ══ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4><i class="fas fa-brain" style="color:var(--accent)"></i> AnalystAI</h4>
+          <p style="color:var(--text-dim);font-size:0.85rem;margin-top:0.5rem">AI-powered data analysis platform. 100% free, 100% browser-based.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Analysis Types</h4>
+          <ul>
+            <li><a href="about.html#analysis-types">Descriptive</a></li>
+            <li><a href="about.html#analysis-types">Diagnostic</a></li>
+            <li><a href="about.html#analysis-types">Predictive</a></li>
+            <li><a href="about.html#analysis-types">Prescriptive</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 AnalystAI. Free and open for everyone.</div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

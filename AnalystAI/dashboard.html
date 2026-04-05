@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — AnalystAI</title>
+  <meta name="description"
+    content="AnalystAI Analysis Dashboard. Upload your data, select analysis types, and get instant expert insights.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- ══ Navigation ══ -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo"><i class="fas fa-brain"></i> AnalystAI</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="dashboard.html" class="nav-cta active"><i class="fas fa-rocket"></i> Dashboard</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- ══ Dashboard Layout ══ -->
+  <div class="dashboard-layout">
+    <!-- ── Left Panel ── -->
+    <aside class="left-panel" id="leftPanel">
+      <!-- Upload -->
+      <div class="panel-section">
+        <div class="panel-section-title">Upload Dataset</div>
+        <div class="upload-zone" id="uploadZone">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <p>Drag & drop your file here</p>
+          <p>or <strong style="color:var(--accent)">click to browse</strong></p>
+          <p class="formats">CSV, Excel (.xlsx), JSON — Max 10MB</p>
+          <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.json" hidden>
+        </div>
+        <button class="run-btn"
+          style="margin-top:0.6rem;background:linear-gradient(135deg,#10B981,#06B6D4);font-size:0.85rem;padding:0.6rem"
+          onclick="loadSampleData()" id="sampleBtn">
+          <i class="fas fa-database"></i> Load Sample Dataset
+        </button>
+      </div>
+
+      <!-- Data Preview -->
+      <div class="panel-section" id="previewSection" style="display:none">
+        <div class="panel-section-title">Data Preview <span id="previewCount" style="color:var(--accent)"></span></div>
+        <div class="data-preview-wrapper">
+          <table class="data-preview-table" id="previewTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Dataset Info -->
+      <div class="panel-section" id="infoSection" style="display:none">
+        <div class="panel-section-title">Dataset Info</div>
+        <div class="dataset-info">
+          <div class="info-chip">
+            <div class="label">Rows</div>
+            <div class="value" id="infoRows">—</div>
+          </div>
+          <div class="info-chip">
+            <div class="label">Columns</div>
+            <div class="value" id="infoCols">—</div>
+          </div>
+          <div class="info-chip">
+            <div class="label">Quality</div>
+            <div class="value" id="infoQuality">—</div>
+          </div>
+          <div class="info-chip">
+            <div class="label">File Size</div>
+            <div class="value" id="infoSize">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Role Toggle -->
+      <div class="panel-section">
+        <div class="panel-section-title">Expert Mode</div>
+        <div class="role-toggle">
+          <button class="role-btn active-da" id="btnDA" onclick="setRole('da')">🔵 Data Analyst</button>
+          <button class="role-btn" id="btnBA" onclick="setRole('ba')">🟢 Business Analyst</button>
+        </div>
+      </div>
+
+      <!-- Analysis Types -->
+      <div class="panel-section">
+        <div class="panel-section-title">Analysis Type</div>
+        <div class="analysis-checks">
+          <div class="analysis-check checked" id="chkDescWrap">
+            <input type="checkbox" id="chkDesc" checked><label for="chkDesc">Descriptive</label>
+          </div>
+          <div class="analysis-check checked" id="chkDiagWrap">
+            <input type="checkbox" id="chkDiag" checked><label for="chkDiag">Diagnostic</label>
+          </div>
+          <div class="analysis-check checked" id="chkPredWrap">
+            <input type="checkbox" id="chkPred" checked><label for="chkPred">Predictive</label>
+          </div>
+          <div class="analysis-check checked" id="chkPrescWrap">
+            <input type="checkbox" id="chkPresc" checked><label for="chkPresc">Prescriptive</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Query -->
+      <div class="panel-section">
+        <div class="panel-section-title">Ask Your Data</div>
+        <textarea class="query-box" id="queryBox"
+          placeholder="Ask anything about your data... e.g. 'Why did sales drop in Q3?'"></textarea>
+      </div>
+
+      <!-- Run Button -->
+      <div class="panel-section">
+        <button class="run-btn" id="runBtn" onclick="runAnalysis()">
+          <i class="fas fa-bolt"></i> Run AI Analysis
+        </button>
+      </div>
+
+      <!-- API Key Settings -->
+      <div class="panel-section">
+        <button class="settings-toggle" onclick="toggleSettings()">
+          <i class="fas fa-cog"></i> API Settings
+          <i class="fas fa-chevron-down" id="settingsArrow"></i>
+        </button>
+        <div class="settings-content" id="settingsContent">
+          <input type="password" class="api-input" id="apiKeyInput" placeholder="Enter your Claude API key (optional)">
+          <a href="https://console.anthropic.com/" target="_blank" class="api-help">
+            <i class="fas fa-external-link-alt"></i> How to get a free API key
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Right Panel ── -->
+    <main class="right-panel" id="rightPanel">
+      <!-- Welcome State -->
+      <div class="welcome-state" id="welcomeState">
+        <i class="fas fa-chart-line"></i>
+        <h2>Welcome to AnalystAI</h2>
+        <p>Upload a dataset on the left panel, select your analysis options, then click <strong>"Run AI
+            Analysis"</strong> to get started.</p>
+      </div>
+
+      <!-- Results (hidden until analysis runs) -->
+      <div id="resultsArea" style="display:none">
+        <!-- AI Response -->
+        <div class="output-section" id="aiResponseSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-robot"></i> AI Insights</div>
+          <div class="ai-response" id="aiResponseCard">
+            <div class="ai-response-header"><i class="fas fa-sparkles"></i> Analysis Summary</div>
+            <div class="ai-response-body" id="aiResponseBody"></div>
+          </div>
+        </div>
+
+        <!-- KPI Tiles -->
+        <div class="output-section" id="kpiSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-tachometer-alt"></i> Key Metrics</div>
+          <div class="kpi-grid" id="kpiGrid"></div>
+        </div>
+
+        <!-- Charts -->
+        <div class="output-section" id="chartsSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-chart-pie"></i> Visualizations</div>
+          <div class="charts-grid" id="chartsGrid"></div>
+        </div>
+
+        <!-- SWOT (BA Mode) -->
+        <div class="output-section" id="swotSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-th-large"></i> SWOT Analysis</div>
+          <div class="swot-grid" id="swotGrid"></div>
+        </div>
+
+        <!-- Risk Matrix (BA Mode) -->
+        <div class="output-section" id="riskSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-exclamation-triangle"></i> Risk Matrix</div>
+          <div id="riskContent"></div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="output-section" id="recSection" style="display:none">
+          <div class="output-section-title"><i class="fas fa-lightbulb"></i> Recommendations</div>
+          <div class="rec-list" id="recList"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Processing Overlay -->
+  <div class="processing-overlay" id="processingOverlay">
+    <div class="spinner"></div>
+    <div class="processing-text">🤖 AI is thinking<span class="dot-anim"></span></div>
+  </div>
+
+  <!-- CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <!-- App Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/parser.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/ai.js"></script>
+
+  <script>
+    /* ── Dashboard State ── */
+    let currentRole = 'da';
+    let parsedData = null;
+    let columnTypes = {};
+
+    /* ── Role Toggle ── */
+    function setRole(role) {
+      currentRole = role;
+      document.getElementById('btnDA').className = role === 'da' ? 'role-btn active-da' : 'role-btn';
+      document.getElementById('btnBA').className = role === 'ba' ? 'role-btn active-ba' : 'role-btn';
+    }
+
+    /* ── Analysis Checkbox Styling ── */
+    document.querySelectorAll('.analysis-check input').forEach(cb => {
+      cb.addEventListener('change', () => {
+        cb.closest('.analysis-check').classList.toggle('checked', cb.checked);
+      });
+    });
+
+    /* ── Settings Toggle ── */
+    function toggleSettings() {
+      const content = document.getElementById('settingsContent');
+      const arrow = document.getElementById('settingsArrow');
+      content.classList.toggle('open');
+      arrow.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : '';
+    }
+
+    /* ── File Upload Handling ── */
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('fileInput');
+
+    uploadZone.addEventListener('click', () => fileInput.click());
+    uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+    uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+    uploadZone.addEventListener('drop', e => {
+      e.preventDefault(); uploadZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
+
+    /* ── Load Sample Dataset ── */
+    function loadSampleData() {
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const regions = ['North', 'South', 'East', 'West'];
+      const products = ['Widget A', 'Widget B', 'Widget C', 'Widget D'];
+      const data = [];
+      for (let yr = 0; yr < 2; yr++) {
+        months.forEach((m, i) => {
+          const base = 10000 + (i + yr * 12) * 500 + Math.floor(Math.random() * 3000);
+          const profit = Math.floor(base * (0.22 + Math.random() * 0.12));
+          const customers = Math.floor(base / 80 + Math.random() * 30);
+          data.push({
+            Month: m,
+            Year: 2025 + yr,
+            Sales: base,
+            Profit: profit,
+            Customers: customers,
+            Region: regions[(i + yr * 3) % 4],
+            Product: products[(i + yr * 2) % 4],
+            Satisfaction: +(3.2 + Math.random() * 1.8).toFixed(1)
+          });
+        });
+      }
+      parsedData = data;
+      columnTypes = detectColumnTypes(data);
+      renderPreview(data);
+      showDatasetInfo(data);
+      document.getElementById('infoSize').textContent = 'Sample';
+      showToast('Sample dataset loaded: ' + data.length + ' rows', 'success');
+    }
+
+    function handleFile(file) {
+      if (file.size > 10 * 1024 * 1024) { showToast('File exceeds 10MB limit', 'error'); return; }
+      const ext = file.name.split('.').pop().toLowerCase();
+      if (!['csv', 'xlsx', 'xls', 'json'].includes(ext)) { showToast('Unsupported format. Use CSV, Excel, or JSON.', 'error'); return; }
+
+      showToast('Parsing file: ' + file.name, 'success');
+      document.getElementById('infoSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+
+      parseFile(file, ext, (data) => {
+        if (!data || data.length === 0) { showToast('No data found in file', 'error'); return; }
+        parsedData = data;
+        columnTypes = detectColumnTypes(data);
+        renderPreview(data);
+        showDatasetInfo(data);
+        showToast('Dataset loaded: ' + data.length + ' rows', 'success');
+      });
+    }
+
+    function renderPreview(data) {
+      const section = document.getElementById('previewSection');
+      const table = document.getElementById('previewTable');
+      const cols = Object.keys(data[0]);
+      const rows = data.slice(0, 10);
+      document.getElementById('previewCount').textContent = `(showing ${rows.length} of ${data.length})`;
+
+      let thead = '<tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr>';
+      let tbody = rows.map(r => '<tr>' + cols.map(c => `<td>${r[c] !== null && r[c] !== undefined ? r[c] : '—'}</td>`).join('') + '</tr>').join('');
+      table.querySelector('thead').innerHTML = thead;
+      table.querySelector('tbody').innerHTML = tbody;
+      section.style.display = 'block';
+    }
+
+    function showDatasetInfo(data) {
+      document.getElementById('infoSection').style.display = 'block';
+      document.getElementById('infoRows').textContent = data.length;
+      document.getElementById('infoCols').textContent = Object.keys(data[0]).length;
+      // Data quality
+      let total = data.length * Object.keys(data[0]).length;
+      let missing = 0;
+      data.forEach(r => Object.values(r).forEach(v => { if (v === null || v === undefined || v === '') missing++; }));
+      let quality = ((1 - missing / total) * 100).toFixed(0);
+      const qEl = document.getElementById('infoQuality');
+      qEl.textContent = quality + '%';
+      qEl.className = 'value';
+    }
+
+    /* ── Run Analysis ── */
+    async function runAnalysis() {
+      if (!parsedData) { showToast('Please upload a dataset first', 'warning'); return; }
+
+      const checks = {
+        descriptive: document.getElementById('chkDesc').checked,
+        diagnostic: document.getElementById('chkDiag').checked,
+        predictive: document.getElementById('chkPred').checked,
+        prescriptive: document.getElementById('chkPresc').checked
+      };
+
+      if (!checks.descriptive && !checks.diagnostic && !checks.predictive && !checks.prescriptive) {
+        showToast('Select at least one analysis type', 'warning'); return;
+      }
+
+      // Show processing
+      document.getElementById('processingOverlay').classList.add('active');
+      document.getElementById('welcomeState').style.display = 'none';
+      document.getElementById('resultsArea').style.display = 'block';
+
+      // Small delay for UX
+      await new Promise(r => setTimeout(r, 800));
+
+      try {
+        // Run analyses
+        const results = runAllAnalyses(parsedData, columnTypes, checks, currentRole);
+
+        // Render KPIs
+        if (results.kpis && results.kpis.length > 0) {
+          renderKPIs(results.kpis);
+          document.getElementById('kpiSection').style.display = 'block';
+        }
+
+        // Render Charts
+        renderAllCharts(parsedData, columnTypes, checks, results);
+        document.getElementById('chartsSection').style.display = 'block';
+
+        // Render Recommendations
+        if (checks.prescriptive && results.recommendations) {
+          renderRecommendations(results.recommendations);
+          document.getElementById('recSection').style.display = 'block';
+        }
+
+        // BA Mode extras
+        if (currentRole === 'ba') {
+          if (results.swot) {
+            renderSWOT(results.swot);
+            document.getElementById('swotSection').style.display = 'block';
+          }
+          if (results.risks) {
+            renderRiskMatrix(results.risks);
+            document.getElementById('riskSection').style.display = 'block';
+          }
+        } else {
+          document.getElementById('swotSection').style.display = 'none';
+          document.getElementById('riskSection').style.display = 'none';
+        }
+
+        // AI narrative
+        const query = document.getElementById('queryBox').value.trim();
+        const apiKey = document.getElementById('apiKeyInput').value.trim();
+        await generateAIResponse(parsedData, columnTypes, results, query, apiKey, currentRole);
+        document.getElementById('aiResponseSection').style.display = 'block';
+
+        showToast('Analysis complete!', 'success');
+      } catch (err) {
+        console.error(err);
+        showToast('Error during analysis: ' + err.message, 'error');
+      } finally {
+        document.getElementById('processingOverlay').classList.remove('active');
+      }
+    }
+
+    /* ── Render KPIs ── */
+    function renderKPIs(kpis) {
+      const grid = document.getElementById('kpiGrid');
+      grid.innerHTML = kpis.map(k => `
+        <div class="kpi-card">
+          <div class="kpi-label">${k.label}</div>
+          <div class="kpi-value">${k.value}</div>
+          ${k.change ? `<div class="kpi-change ${k.changeDir || ''}">${k.change}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    /* ── Render Recommendations ── */
+    function renderRecommendations(recs) {
+      const list = document.getElementById('recList');
+      list.innerHTML = recs.map(r => `
+        <div class="rec-card ${r.priority.toLowerCase()}">
+          <div><span class="rec-priority">${r.priority}</span></div>
+          <div class="rec-details">
+            <h5>${r.action}</h5>
+            <p>${r.outcome}</p>
+            <div class="rec-meta"><i class="fas fa-clock"></i> ${r.timeline}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ── Render SWOT ── */
+    function renderSWOT(swot) {
+      const grid = document.getElementById('swotGrid');
+      grid.innerHTML = `
+        <div class="swot-card strengths"><h4>💪 Strengths</h4><ul>${swot.strengths.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        <div class="swot-card weaknesses"><h4>⚠️ Weaknesses</h4><ul>${swot.weaknesses.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        <div class="swot-card opportunities"><h4>🚀 Opportunities</h4><ul>${swot.opportunities.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        <div class="swot-card threats"><h4>🔥 Threats</h4><ul>${swot.threats.map(s => `<li>${s}</li>`).join('')}</ul></div>
+      `;
+    }
+
+    /* ── Render Risk Matrix ── */
+    function renderRiskMatrix(risks) {
+      const content = document.getElementById('riskContent');
+      content.innerHTML = `<table class="risk-table">
+        <thead><tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr></thead>
+        <tbody>${risks.map(r => `<tr><td>${r.risk}</td><td>${r.likelihood}</td><td>${r.impact}</td><td>${r.mitigation}</td></tr>`).join('')}</tbody>
+      </table>`;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+Month,Sales,Profit,Region,Product,Customers
+Jan,12500,3200,North,Widget A,145
+Feb,13800,3650,South,Widget B,162
+Mar,11200,2800,East,Widget A,130
+Apr,15600,4100,West,Widget C,185
+May,14200,3750,North,Widget B,170
+Jun,16800,4500,South,Widget A,195
+Jul,13100,3300,East,Widget C,155
+Aug,17500,4800,North,Widget B,210
+Sep,15900,4200,West,Widget A,188
+Oct,12800,3100,South,Widget C,148
+Nov,18200,5100,East,Widget B,225
+Dec,19500,5500,North,Widget A,240
+Jan,13200,3400,West,Widget C,158
+Feb,14500,3900,South,Widget B,175
+Mar,16100,4350,North,Widget A,192
+Apr,11800,2900,East,Widget C,138
+May,17200,4700,West,Widget B,205
+Jun,19800,5600,South,Widget A,245
+Jul,14800,3850,North,Widget C,178
+Aug,16500,4450,East,Widget B,198
+Sep,20100,5800,West,Widget A,255
+Oct,13600,3500,South,Widget C,165
+Nov,18800,5300,North,Widget B,232
+Dec,21500,6200,East,Widget A,268
